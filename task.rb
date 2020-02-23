@@ -7,7 +7,7 @@ def q1
   # 以下に回答を記載
   names.push("斎藤")
 
-  puts names
+  p names
 end
 
 def q2
@@ -15,9 +15,8 @@ def q2
   array2 = %w(bird bat tiger)
 
   # 以下に回答を記載
-  array1.push(array2)
-  array = array1
-  puts array
+  array = array1 + array2
+  p array
 end
 
 def q3
@@ -31,11 +30,7 @@ def q4
   sports = ["サッカー", "フットサル", nil, "野球", "バスケ", nil, "バレー"]
 
   # 以下に回答を記載
-  sports.each do |sport|
-    if sport != nil
-      puts sport 
-    end
-  end
+  p sports.compact
 end
 
 def q5
@@ -51,20 +46,26 @@ def q6
   numbers1 = [1, 2, 3, 4, 5]
 
   # 以下に回答を記載
-  p numbers1
+  numbers2 = numbers1.map {|number| number *10} 
+    p numbers2
+
 end
 
 def q7
   array = ["1", "2", "3", "4", "5"]
 
   # 以下に回答を記載
-
+  p array.map(&:to_i)
 end
 
 def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
+  upper_case_programming_languages1 = programming_languages
+  programming_languages1 = programming_languages.map {|programing_language| programing_language.capitalize }
+  programming_languages = programming_languages1
+  upper_case_programming_languages = upper_case_programming_languages1.map {|upper_case_programming_language| upper_case_programming_language.upcase}
 
   # 以下は変更しないで下さい
   p programming_languages
@@ -75,14 +76,24 @@ def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-
+  names.each_with_index {|name, index|
+    index += 1
+    puts "会員番号No.#{index} #{name}さん"
+  }
+  
 end
 
 def q10
   foods = %w(いか たこ うに しゃけ うにぎり うに軍艦 うに丼)
 
   # 以下に回答を記載
-
+  foods.each do |food|
+    if food.include?("うに")
+      puts "好物です"
+    else 
+      puts "まぁまぁ好きです"
+    end
+  end
 end
 
 def q11
