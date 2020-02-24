@@ -55,17 +55,29 @@ def q7
   array = ["1", "2", "3", "4", "5"]
 
   # 以下に回答を記載
-  p array.map(&:to_i)
+  #p array.map(&:to_i)
+  p array.replace([1, 2, 3, 4, 5])
+
+
 end
 
 def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-  upper_case_programming_languages1 = programming_languages
-  programming_languages1 = programming_languages.map {|programing_language| programing_language.capitalize }
-  programming_languages = programming_languages1
-  upper_case_programming_languages = upper_case_programming_languages1.map {|upper_case_programming_language| upper_case_programming_language.upcase}
+  #upper_case_programming_languages1 = programming_languages
+  #programming_languages1 = programming_languages.map {|programing_language| programing_language.capitalize }
+  #programming_languages = programming_languages1
+  #upper_case_programming_languages = upper_case_programming_languages1.map {|upper_case_programming_language| upper_case_programming_language.upcase}
+  
+
+  #programming_languages1 = programming_languages.map {|programing_language| programing_language.capitalize }
+  #programming_languages = programming_languages1
+
+
+   programming_languages1 = programming_languages.replace(["Ruby", "Php", "Python", "Javascript"])
+   upper_case_programming_languages = programming_languages1.map {|programming_language| programming_language.upcase}
+
 
   # 以下は変更しないで下さい
   p programming_languages
@@ -76,12 +88,10 @@ def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  names.each_with_index {|name, index|
-    index += 1
+  names.each.with_index(1) {|name, index|
     puts "会員番号No.#{index} #{name}さん"
   }
-  
-end
+  end
 
 def q10
   foods = %w(いか たこ うに しゃけ うにぎり うに軍艦 うに丼)
@@ -100,13 +110,21 @@ def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
+  puts "ユーザーの趣味一覧"
+  sport = sports.flatten
+  hobbys = sport.uniq
 
+  hobbys.each.with_index(1) {|hobby, index|
+    puts "No#{index} #{hobby}"
+  }
 end
 
 def q12
   data = { user: { name: "satou", age: 33 } }
 
   # 以下に回答を記載
+  p data[:user][:name]
+
 
 end
 
@@ -115,14 +133,15 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-
+  mergedata = user_data.merge(update_data)
+  p mergedata
 end
 
 def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
-
+  p data.keys
 end
 
 def q15
@@ -130,7 +149,17 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
+  if data1.include?(:age)
+    puts "OK"
+  else
+    puts "NG"
+  end
 
+  if data2.include?(:age)
+    puts "OK"
+  else
+    puts "NG"
+  end
 end
 
 def q16
@@ -142,12 +171,24 @@ def q16
   ]
 
   # 以下に回答を記載
-
+  users.each do |user|
+    puts "私の名前は#{user[:name]}です。年齢は#{user[:age]}です"
+  end
 end
 
 class UserQ17
   # 以下に回答を記載
+  def initialize(user)
+    @user = user
+    
+  end
 
+  def info
+    puts "名前：#{@user[:name]}"
+    puts "年齢：#{@user[:age]}"
+    puts "性別：#{@user[:gender]}"
+    puts "管理者権限：#{@user[:admin]}"
+  end
 end
 
 def q17
@@ -162,6 +203,18 @@ end
 
 class UserQ18
   # 以下に回答を記載
+  def initialize(user18)
+    @user = user18
+  end
+
+  def introduce
+    if @user[:age] >= 20
+      puts "こんにちは，#{@user[:name]}と申します。宜しくお願いいたします。" 
+    else
+      puts "はいさいまいど〜，#{@user[:name]}です！！！"
+    end
+
+  end
 
 end
 
@@ -180,6 +233,9 @@ class Item
   def initialize(name)
     @name = name
   end
+  def name
+    @name[:name]
+  end
 end
 
 def q19
@@ -190,7 +246,9 @@ end
 
 class UserQ20
   # 以下に回答を記載
-
+  def initialize()
+   
+  end
 end
 
 class Zoo
