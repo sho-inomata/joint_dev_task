@@ -55,29 +55,17 @@ def q7
   array = ["1", "2", "3", "4", "5"]
 
   # 以下に回答を記載
-  #p array.map(&:to_i)
-  p array.replace([1, 2, 3, 4, 5])
-
-
+  p array.map!(&:to_i)
 end
 
 def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-  #upper_case_programming_languages1 = programming_languages
-  #programming_languages1 = programming_languages.map {|programing_language| programing_language.capitalize }
-  #programming_languages = programming_languages1
-  #upper_case_programming_languages = upper_case_programming_languages1.map {|upper_case_programming_language| upper_case_programming_language.upcase}
-  
 
-  #programming_languages1 = programming_languages.map {|programing_language| programing_language.capitalize }
-  #programming_languages = programming_languages1
-
-
-   programming_languages1 = programming_languages.replace(["Ruby", "Php", "Python", "Javascript"])
-   upper_case_programming_languages = programming_languages1.map {|programming_language| programming_language.upcase}
-
+  upper_case_programming_language = programming_languages
+  upper_case_programming_languages = upper_case_programming_language.map(&:upcase)
+  programming_languages.map! {|programing_language| programing_language.capitalize }
 
   # 以下は変更しないで下さい
   p programming_languages
@@ -111,11 +99,10 @@ def q11
 
   # 以下に回答を記載
   puts "ユーザーの趣味一覧"
-  sport = sports.flatten
-  hobbys = sport.uniq
+  sports.flatten!.uniq!
 
-  hobbys.each.with_index(1) {|hobby, index|
-    puts "No#{index} #{hobby}"
+  sports.each.with_index(1) {|hobby, index|
+   puts "No#{index} #{hobby}"
   }
 end
 
@@ -133,8 +120,8 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-  mergedata = user_data.merge(update_data)
-  p mergedata
+  user_data.merge!(update_data)
+  p user_data
 end
 
 def q14
