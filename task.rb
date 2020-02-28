@@ -63,9 +63,8 @@ def q8
 
   # 以下に回答を記載
 
-  upper_case_programming_language = programming_languages
-  upper_case_programming_languages = upper_case_programming_language.map(&:upcase)
-  programming_languages.map! {|programing_language| programing_language.capitalize }
+  upper_case_programming_languages = programming_languages.map(&:upcase)
+  programming_languages.map!(&:capitalize)
 
   # 以下は変更しないで下さい
   p programming_languages
@@ -136,16 +135,9 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-  if data1.include?(:age)
-    puts "OK"
-  else
-    puts "NG"
+  if (data1.include?(:age))?(puts"OK"):(puts "NG")
   end
-
-  if data2.include?(:age)
-    puts "OK"
-  else
-    puts "NG"
+  if (data2.include?(:age))?(puts "OK"):(puts "NG")
   end
 end
 
@@ -165,16 +157,19 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  def initialize(user)
-    @user = user
-    
-  end
+   def initialize(**user)
+     @user = user
+     if (@user[:admin] == true)? (@user[:admin] = "有り") : (@user[:admin] = "無し")
+     end
+   end
 
   def info
-    puts "名前：#{@user[:name]}"
-    puts "年齢：#{@user[:age]}"
-    puts "性別：#{@user[:gender]}"
-    puts "管理者権限：#{@user[:admin]}"
+    puts <<~TEXT
+    "名前：#{@user[:name]}"
+    "年齢：#{@user[:age]}"
+    "性別：#{@user[:gender]}"
+    "管理者権限：#{@user[:admin]}"
+    TEXT
   end
 end
 
@@ -190,15 +185,18 @@ end
 
 class UserQ18
   # 以下に回答を記載
-  def initialize(user18)
-    @user = user18
+
+  def initialize(**user)
+    @name = user[:name]
+    @age = user[:age]
+  
   end
 
   def introduce
-    if @user[:age] >= 20
-      puts "こんにちは，#{@user[:name]}と申します。宜しくお願いいたします。" 
+    if @age >= 20
+      puts "こんにちは，#{@name}と申します。宜しくお願いいたします。" 
     else
-      puts "はいさいまいど〜，#{@user[:name]}です！！！"
+      puts "はいさいまいど〜，#{@name}です！！！"
     end
 
   end
@@ -217,30 +215,53 @@ end
 class Item
   # 以下を修正して下さい
 
-  def initialize(name)
+  attr_reader :name
+
+  def initialize(name:)
     @name = name
   end
-  def name
-    @name[:name]
-  end
+
 end
 
 def q19
   # ここは変更しないで下さい
   book = Item.new(name: "ゼロ秒思考")
+  book2 = Item.new(name: "思考")
   puts book.name
 end
 
 class UserQ20
   # 以下に回答を記載
-  def initialize()
-   
+  attr_reader :name, :age
+  def initialize(**user)
+    @name = user[:name]
+    @age =  user[:age]
   end
 end
 
 class Zoo
   # 以下に回答を記載
 
+  def initialize(**zoo)
+    @name = zoo[:name]
+    @entry_fee = zoo[:entry_fee]
+    @infant = @entry_fee[:infant]
+    @children = @entry_fee[:children]
+    @adult = @entry_fee[:adult]
+    @senior = @entry_fee[:senior]
+  end
+
+  def info_entry_fee(user)#userにはっしゅが代入される
+    if user.age >= 0 && user.age <= 5
+      puts "#{user.name}さんの入場料は#{@infant}円です。"
+    elsif user.age >= 6 && user.age <= 12
+      puts "#{user.name}さんの入場料は#{@children}円です。"
+    elsif user.age >= 13 && user.age <= 64
+      puts "#{user.name}さんの入場料は#{@adult}円です。"
+    elsif user.age >= 65 && user.age <= 120
+      puts "#{user.name}さんの入場料は#{@senior}円です。"
+    end
+  end
 end
 
 
@@ -256,6 +277,7 @@ def q20
   ]
 
   users.each do |user|
-    zoo.info_entry_fee(user)
-  end
+     zoo.info_entry_fee(user)
+   end
 end
+
