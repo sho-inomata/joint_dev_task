@@ -135,10 +135,8 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-  if (data1.include?(:age))?(puts"OK"):(puts "NG")
-  end
-  if (data2.include?(:age))?(puts "OK"):(puts "NG")
-  end
+  p data1.include?(:age) ? "OK" : "NG"
+  p data2.include?(:age) ? "OK" : "NG"
 end
 
 def q16
@@ -158,17 +156,20 @@ end
 class UserQ17
   # 以下に回答を記載
    def initialize(**user)
-     @user = user
-     if (@user[:admin] == true)? (@user[:admin] = "有り") : (@user[:admin] = "無し")
-     end
+    @name = user[:name]
+    @age = user[:age]
+    @gender = user[:gender]
+    @admin = user[:admin]
+    
    end
 
   def info
+    admin = @admin ? "有り" : "無し"
     puts <<~TEXT
-    "名前：#{@user[:name]}"
-    "年齢：#{@user[:age]}"
-    "性別：#{@user[:gender]}"
-    "管理者権限：#{@user[:admin]}"
+    "名前：#{@name}"
+    "年齢：#{@age}"
+    "性別：#{@gender}"
+    "管理者権限：#{admin}"
     TEXT
   end
 end
@@ -185,22 +186,24 @@ end
 
 class UserQ18
   # 以下に回答を記載
-
   def initialize(**user)
     @name = user[:name]
     @age = user[:age]
-  
   end
 
   def introduce
     if @age >= 20
+<<<<<<< HEAD
       "こんにちは，#{@name}と申します。宜しくお願いいたします。" 
     else
       "はいさいまいど〜，#{@name}です！！！"
+=======
+     "こんにちは，#{@name}と申します。宜しくお願いいたします。" 
+    else
+     "はいさいまいど〜，#{@name}です！！！"
+>>>>>>> ruby_q20
     end
-
   end
-
 end
 
 def q18
@@ -251,15 +254,19 @@ class Zoo
     @senior = @entry_fee[:senior]
   end
 
-  def info_entry_fee(user)#userにはっしゅが代入される
-    if user.age >= 0 && user.age <= 5
-      puts "#{user.name}さんの入場料は#{@infant}円です。"
-    elsif user.age >= 6 && user.age <= 12
-      puts "#{user.name}さんの入場料は#{@children}円です。"
-    elsif user.age >= 13 && user.age <= 64
-      puts "#{user.name}さんの入場料は#{@adult}円です。"
-    elsif user.age >= 65 && user.age <= 120
-      puts "#{user.name}さんの入場料は#{@senior}円です。"
+  def info_entry_fee(user)
+
+    money = [@infant, @children, @adult, @senior]
+
+    case user.age
+    when 0..5
+      puts "#{user.name}さんの入場料は#{money[0]}円です。"
+    when 6..12
+      puts "#{user.name}さんの入場料は#{money[1]}円です。"
+    when 13..64
+      puts "#{user.name}さんの入場料は#{money[2]}円です。"
+    when 65..120
+      puts "#{user.name}さんの入場料は#{money[3]}円です。"
     end
   end
 end
