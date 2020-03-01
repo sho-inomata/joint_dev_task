@@ -193,15 +193,9 @@ class UserQ18
 
   def introduce
     if @age >= 20
-<<<<<<< HEAD
       "こんにちは，#{@name}と申します。宜しくお願いいたします。" 
     else
-      "はいさいまいど〜，#{@name}です！！！"
-=======
-     "こんにちは，#{@name}と申します。宜しくお願いいたします。" 
-    else
      "はいさいまいど〜，#{@name}です！！！"
->>>>>>> ruby_q20
     end
   end
 end
@@ -255,22 +249,22 @@ class Zoo
   end
 
   def info_entry_fee(user)
-
-    money = [@infant, @children, @adult, @senior]
-
+    money=
     case user.age
     when 0..5
-      puts "#{user.name}さんの入場料は#{money[0]}円です。"
+      @infant
     when 6..12
-      puts "#{user.name}さんの入場料は#{money[1]}円です。"
+      @children
     when 13..64
-      puts "#{user.name}さんの入場料は#{money[2]}円です。"
+      @adult
     when 65..120
-      puts "#{user.name}さんの入場料は#{money[3]}円です。"
+      @senior
     end
-  end
-end
 
+  puts "#{user.name}さんの入場料は#{money}円です。"
+  end
+  
+end
 
 def q20
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
@@ -287,4 +281,3 @@ def q20
      zoo.info_entry_fee(user)
    end
 end
-
